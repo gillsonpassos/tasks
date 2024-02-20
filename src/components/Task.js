@@ -6,13 +6,16 @@ import commonStyles from "../commonStyles";
 
 export default props => {
 
+    const doneOrNotStyle = props.doneAt != null ?
+        { textDecorationLine: 'line-through' } : {}
+
     return (
         <View style={styles.container}>
             <View style={styles.checkContainer}>
                 {getCheckView(props.doneAt)}
             </View>
             <View>
-                <Text>{props.desc}</Text>
+                <Text style={[styles.desc, doneOrNotStyle]}>{props.desc}</Text>
                 <Text>{props.estimateAt + ''}</Text>
             </View>
 
@@ -24,7 +27,7 @@ function getCheckView(doneAt) {
     if (doneAt != null) {
         return (
             <View style={styles.done}>
-                <Icon name="search" size={20}
+                <Icon name="headphones" size={20}
                     color='#fff'></Icon>
             </View>
         )
@@ -66,5 +69,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#4D7031',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    desc: {
+        fontFamily: commonStyles.fontFamily,
+        color: commonStyles.colors.mainText,
+        fontSize: 15
     }
 })
