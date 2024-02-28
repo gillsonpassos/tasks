@@ -9,9 +9,11 @@ import {
     TouchableWithoutFeedback
 } from 'react-native'
 
+import DateTimePicker from '@react-native-community/datetimepicker'
+
 import commonStyles from '../commonStyles'
 
-const initialState = { desc: '' }
+const initialState = { desc: '', date: new Date() }
 
 export default class AddTask extends Component {
 
@@ -19,11 +21,19 @@ export default class AddTask extends Component {
         ...initialState
     }
 
+    getDateTimePicker = () => {
+        return <DateTimePicker
+            value={this.state.date}
+            onChange={(_, date) => this.setState({ date })}
+            mode='date' />
+    }
+
     render() {
         return (
             <Modal transparent={true} visible={this.props.isVisible}
                 onRequestClose={this.props.onCancel}
-                animationType='slidde'>
+                animation
+                animationType='slide'>
                 <TouchableWithoutFeedback
                     onPress={this.props.onCancel}>
                     <View style={styles.background}></View>
@@ -34,6 +44,7 @@ export default class AddTask extends Component {
                         placeholder='Informe a Descrição...'
                         onChangeText={desc => this.setState({ desc })}
                         value={this.state.desc} />
+                    {this.getDateTimePicker()}
                     <View style={styles.buttons}>
                         <TouchableOpacity onPress={this.props.onCancel} >
                             <Text style={styles.button} >Cancelar</Text>
