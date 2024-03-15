@@ -102,7 +102,7 @@ export default class Auth extends Component {
                     <TouchableOpacity onPress={this.signinOrSignup}>
                         <View style={styles.button}>
                             <Text style={styles.buttonText}>
-                                {this.state.stageNew ? 'Registrar' : 'BANANA'}
+                                {this.state.stageNew ? 'Registrar' : 'Entrar'}
                             </Text>
                         </View>
                         <TouchableOpacity style={{ padding: 10 }}
